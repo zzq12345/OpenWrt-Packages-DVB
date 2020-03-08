@@ -15,3 +15,4 @@
   
    --disable-bintray_cache  \ 
   
+7、oscam 来源为nx111
