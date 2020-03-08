@@ -10,6 +10,8 @@
 
 6、如果出现ERROR: Failed to fetch dvb-scan files (use --disable-dvbscan to skip)错误，请运行sudo apt-get install dvb-apps
    或者修改OpenWrt-Packages-DVB/tvheadend下的Makefile文件，在第49行后面回车并加入
-   --disable-dvbscan \ 
-   --disable-bintray_cache  \ 
    
+   --disable-dvbscan \ 
+  
+   --disable-bintray_cache  \ 
+  
