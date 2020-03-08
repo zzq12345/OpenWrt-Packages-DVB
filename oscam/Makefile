@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_REV:=11402
+PKG_REV:=11572
 PKG_VERSION:=1.20-$(PKG_REV)
 PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=175e3c61ebf8df3611f980f88ff8b153c4f456d7
+PKG_SOURCE_VERSION:=master
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://repo.or.cz/oscam.git
+PKG_SOURCE_URL:=https://github.com/nx111/oscam.git
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_LICENSE:=GPL-3.0
@@ -34,7 +34,7 @@ endef
 
 define Package/oscam/description
   OSCam is an Open Source Conditional Access Module software,
-  based on the very good MpCS version 0.9d created by ​dukat.
+  based on the very good MpCS version 0.9d created by 鈥媎ukat.
 endef
 
 define Package/oscam/conffiles
