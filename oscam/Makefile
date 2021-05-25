@@ -38,40 +38,42 @@ define Package/oscam/description
   based on the very good MpCS version 0.9d created by 鈥媎ukat.
 endef
 
-define Package/oscam/conffiles
-/etc/oscam/oscam.conf
-/etc/oscam/oscam.server
-/etc/oscam/oscam.user
-/etc/oscam/SoftCam.Key
-/etc/oscam/oscam.dvbapi
-endef
 
-CONFIGURE_CMD = ./config.sh
-CONFIGURE_ARGS = \
-	--enable all
 
 MAKE_FLAGS += \
-	CONF_DIR=/etc/oscam \
+	CROSS=$(TOOLCHAIN_DIR)/bin/$(TARGET_CROSS) \
+	CROSS_DIR=$(TOOLCHAIN_DIR)/bin/ \
+	$(TARGET_CONFIGURE_OPTS) \
+	CFLAGS="$(TARGET_CFLAGS) $(FPIC) $(TARGET_CPPFLAGS)" \
+	LDFLAGS="$(TARGET_LDFLAGS)" \
 	OSCAM_BIN=Distribution/oscam \
-        USE_SSL=1 \
+	SVN_REV=$(PKG_REV) \
+	CONF_DIR=/etc/oscam \
+	USE_LIBCRYPTO=1 \
 	USE_LIBUSB=1 \
 	USE_PCSC=1 \
-	USE_LIBCRYPTO=1 
+	USE_SSL=1
+
+define Package/oscam/conffiles
+/etc/oscam/oscam.conf
+/etc/oscam/oscam.user
+/etc/oscam/oscam.server
+/etc/oscam/oscam.srvid
+endef
 
 define Package/oscam/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/oscam $(1)/usr/bin/oscam
-
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/oscam.init $(1)/etc/init.d/oscam
 
-	$(INSTALL_DIR) $(1)/etc/oscam
-	$(INSTALL_CONF) ./files/oscam.conf $(1)/etc/oscam
-	$(INSTALL_CONF) ./files/oscam.server $(1)/etc/oscam
-	$(INSTALL_CONF) ./files/oscam.user $(1)/etc/oscam
-	$(INSTALL_CONF) ./files/SoftCam.Key $(1)/etc/oscam
-	$(INSTALL_CONF) ./files/oscam.dvbapi $(1)/etc/oscam
+	$(INSTALL_DIR) $(1)/etc/rc.d
+	$(INSTALL_BIN) ./files/S99oscam $(1)/etc/rc.d/
 
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/oscam $(1)/usr/bin/oscam
+
+	$(INSTALL_DIR) $(1)/etc/oscam
+#	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/doc/example/* $(1)/etc/oscam/
+	$(INSTALL_BIN) ./files/oscam/* $(1)/etc/oscam/
 
 endef
 
@@ -88,3 +90,4 @@ define Package/$(PKG_NAME)/prerm
 endef
 
 $(eval $(call BuildPackage,oscam))
+
