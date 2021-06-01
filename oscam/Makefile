@@ -1,25 +1,22 @@
-#
-# Copyright (C) 2015 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
-
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_REV:=11693
+PKG_REV:=r11693
 PKG_VERSION:=1.20-$(PKG_REV)
 PKG_RELEASE:=1
-PKG_SOURCE_VERSION:=a454c6702436479f369a202c5b55bbcc452a4770
+
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=master
+PKG_SOURCE_VERSION:=a454c6702436479f369a202c5b55bbcc452a4770
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/nx111/oscam.git
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+
+PKG_MAINTAINER:=OSCam developers <unknown>
 PKG_LICENSE:=GPL-3.0
 PKG_LICENSE_FILES:=COPYING
+
+
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
@@ -35,10 +32,12 @@ endef
 
 define Package/oscam/description
   OSCam is an Open Source Conditional Access Module software,
-  based on the very good MpCS version 0.9d created by 鈥媎ukat.
+  based on the very good MpCS version 0.9d created by ​dukat.
 endef
 
-
+define Package/oscam/description
+  OSCam is an Open Source Conditional Access Module software
+endef
 
 MAKE_FLAGS += \
 	CROSS=$(TOOLCHAIN_DIR)/bin/$(TARGET_CROSS) \
@@ -90,4 +89,3 @@ define Package/$(PKG_NAME)/prerm
 endef
 
 $(eval $(call BuildPackage,oscam))
-
