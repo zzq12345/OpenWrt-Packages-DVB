@@ -1,5 +1,9 @@
 1、进入lede编译主目录，cd package 
-
+sudo apt-get install -y libavahi-client-dev
+apt-get install libavahi-common3
+apt-get install -y libavahi-common-dev
+apt-get install  libavahi-common3
+apt-get install libavahi-client3
 2、git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
 
 3 、cd ..
