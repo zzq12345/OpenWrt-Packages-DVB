@@ -1,6 +1,6 @@
 1、进入lede编译主目录，cd package 
 
-2、git clone https://github.com/kob/OpenWrt-Packages-DVB.git
+2、git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
 
 3、rm -rf  ./feeds/packages/multimedia/tvheadend #删除原来自带的tvheadend插件
 
